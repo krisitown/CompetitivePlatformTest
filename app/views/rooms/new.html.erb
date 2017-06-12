@@ -1,0 +1,25 @@
+<h2>Create room</h2>
+<%= form_for @room do |f| %>
+
+    <% if @room.errors.any? %>
+        <div id="error_explanation">
+            <div class="alert alert-danger">
+                The form contains <%= pluralize(@room.errors.count, 
+                "errors") %>
+                <ul>
+                <% @room.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+            </div>
+        </div>
+    <% end %>
+    
+    <%= f.label :name %></br>
+    <%= f.text_field :name %></br>
+    
+    <label>Coins at stake</label></br>
+    <%= f.number_field :coins_per_player %></br>
+    
+    <%= f.submit 'Create Room' %>
+<% end %>

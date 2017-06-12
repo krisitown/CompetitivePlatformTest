@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612154142) do
+ActiveRecord::Schema.define(version: 20170612172215) do
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "player_one_id"
+    t.integer  "player_two_id"
+    t.integer  "coins_per_player"
+    t.string   "name"
+    t.integer  "winner_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "player_count"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
