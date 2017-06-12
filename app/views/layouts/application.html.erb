@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CompetitivePlatformTest</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- navigation -->
+<nav>
+  <% if session[:current_user] == nil %>
+    <a href="/users/new">Register</a>
+    <a href="/login">Log in</a>
+  <% else %>
+    <a href="/users/<%= session[:current_user]['id'] %>">Profile</a>
+    <a href="#">Coins: <%= session[:current_user]['coins'] %></a>
+    <a href="/logout">Log out</a>
+  <% end %>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>

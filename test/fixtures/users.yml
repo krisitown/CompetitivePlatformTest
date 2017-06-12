@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  password: MyString
+  password_confirmation: MyString
+  rating: 1
+  coins: 1
+
+two:
+  username: MyString
+  password: MyString
+  password_confirmation: MyString
+  rating: 1
+  coins: 1

@@ -1,0 +1,29 @@
+<h2>Register:</h2>
+
+<%= form_for @user do |f| %>
+
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <div class="alert alert-danger">
+                The form contains <%= pluralize(@user.errors.count, 
+                "errors") %>
+                <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+            </div>
+        </div>
+    <% end %>
+
+    <%= f.label :username %></br>
+    <%= f.text_field :username %></br>
+    
+    <%= f.label :password %></br>
+    <%= f.password_field :password %></br>
+    
+    <%= f.label :password_confirmation %></br>
+    <%= f.password_field :password_confirmation %></br>
+    
+    <%= f.submit 'Register' %>
+<% end %>
