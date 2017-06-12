@@ -1,0 +1,13 @@
+<h2><%= @room.name %></h2>
+
+<h3>Players:</h3>
+<ul>
+    <li><% if @room.player_one_id != nil %> <%= User.find(@room.player_one_id).username %> <% end %></li>
+    <li><% if @room.player_two_id != nil %> <%= User.find(@room.player_two_id).username %> <% end %></li>
+</ul>
+
+<a href="/rooms/leave/<%= @room.id %>">Leave</a>
+
+<% if @room.player_one_id == session[:current_user]['id'] %>
+    <a href="/rooms/start/<%= @room.id %>">Start Game</a>
+<% end %>

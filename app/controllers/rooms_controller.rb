@@ -22,8 +22,8 @@ class RoomsController < ApplicationController
     
     def show
         user = session[:current_user]
-        room = Room.find(params[:id])
-        if room.player_one_id != user['id'] && room.player_two_id != user['id']
+        @room = Room.find(params[:id])
+        if @room.player_one_id != user['id'] && @room.player_two_id != user['id']
             flash[:danger] = "You do not have permission to enter this part of the application."
             redirect_to '/'
         end
@@ -44,7 +44,8 @@ class RoomsController < ApplicationController
 
                 redirect_to room_path(room)
             else
-                render :json => {:response => 'You have already joined this room!'}
+                flash[:danger] = "You have already joined this room!"
+                redirect_to '/'
             end
         #see if first spot is empty    
         elsif room.player_one_id == nil
@@ -57,13 +58,37 @@ class RoomsController < ApplicationController
                 
                 redirect_to room_path(room)
             else
-                render :json => {:response => 'You have already joined this room!'}
+                flash[:danger] = "You have already joined this room!"
+                redirect_to '/'
             end
         #room is full
         else
-            render :json => {:response => 'The room is full!'}
+            flash[:danger] = "The room is full!"
+            redirect_to '/'
         end
     end
+    
+    def leave
+        user = session[:current_user]
+        room = Room.find(params[:id])
+        if room.player_one_id == user['id']
+            room.player_count -= 1
+            room.player_one_id = nil
+            room.save
+            flash[:success] = "You have successfully left the room!"
+            redirect_to '/'
+        elsif room.player_two_id == user['id']
+            room.player_count -= 1
+            room.player_two_id = nil
+            room.save
+            flash[:success] = "You have successfully left the room!"
+            redirect_to '/'
+        else
+            flash[:danger] = "You are not in the room"
+            redirect_to '/'
+        end
+    end
+        
         
     private
         def room_params

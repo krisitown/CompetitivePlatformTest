@@ -21,6 +21,14 @@
   <% end %>
 </nav>
 
+<!-- flashes -->
+<% if flash[:success] != nil %>
+  <div><%= flash[:success] %></div>
+<% end %>
+<% if flash[:danger] != nil %>
+  <div><%= flash[:danger] %></div>
+<% end %>
+
 <%= yield %>
 
 </body>

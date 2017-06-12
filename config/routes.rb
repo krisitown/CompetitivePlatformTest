@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   
   get 'rooms/join/:id' => 'rooms#join'
+  get 'rooms/leave/:id' => 'rooms#leave'
+  get 'rooms/start/:id' => 'rooms#start'
   # Example resource route with options:
   #   resources :products do
   #     member do
