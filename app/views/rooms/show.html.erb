@@ -8,11 +8,11 @@
 
 <div id="winner"></div>
 
-<a href="/rooms/leave/<%= @room.id %>">Leave</a>
+<a class="btn btn-danger" href="/rooms/leave/<%= @room.id %>">Leave</a>
 
 <% if @room.player_one_id == session[:current_user]['id'] %>
     <form action="/rooms/start/<%= @room.id %>" method="GET">
-        <input id="start_game" type="submit" value="Start Game">
+        <input class="btn btn-primary" id="start_game" type="submit" value="Start Game">
     </form>
 <% end %>
 
