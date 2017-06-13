@@ -1,11 +1,11 @@
 <div class="room">
-    <h2 class="name"><%= room.name %></h2>
+    <h3 class="name"><%= room.name %></h2>
     <h4>Players inside: <%= room.player_count %>/2 </h4>
     <h4>Stake: <%= room.coins_per_player %></h4>
     <% if room.player_one_id == session[:current_user]['id'] || room.player_two_id == session[:current_user] %>
         <h4>You are already in this room!</h4>
-        <a href="/rooms/<%= room.id %>">Enter</a>
+        <a class="btn btn-success" href="/rooms/<%= room.id %>">Enter</a>
     <% else %>
-        <a href="/rooms/join/<%= room.id %>">Join</a>
+        <a class="btn btn-success" href="/rooms/join/<%= room.id %>">Join</a>
     <% end %>
 </div>
