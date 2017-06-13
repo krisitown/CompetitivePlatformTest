@@ -16,7 +16,25 @@
     <a href="/login">Log in</a>
   <% else %>
     <a href="/users/<%= session[:current_user]['id'] %>">Profile</a>
-    <a href="#">Coins: <%= session[:current_user]['coins'] %></a>
+    <a id="coin_link" href="#">Coins: <%= User.find(session[:current_user]['id']).coins %></a>
+    <div id="coin_adder" style="display: none;">
+      <form action="/add_coins" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <label>Add coins:</label>
+        <input type="number" name="coins">
+        <input type="submit" value="Add coins">
+      </form>
+    </div>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#coin_link').click(function(){
+          $('#coin_adder').dialog();
+          return false;
+        })
+      })
+    </script>
     <a href="/logout">Log out</a>
   <% end %>
 </nav>

@@ -2,12 +2,42 @@
 
 <h3>Players:</h3>
 <ul>
-    <li><% if @room.player_one_id != nil %> <%= User.find(@room.player_one_id).username %> <% end %></li>
-    <li><% if @room.player_two_id != nil %> <%= User.find(@room.player_two_id).username %> <% end %></li>
+    <li id="player1"><% if @room.player_one_id != nil %> <%= User.find(@room.player_one_id).username %> <% end %></li>
+    <li id="player2"><% if @room.player_two_id != nil %> <%= User.find(@room.player_two_id).username %> <% end %></li>
 </ul>
+
+<div id="winner"></div>
 
 <a href="/rooms/leave/<%= @room.id %>">Leave</a>
 
 <% if @room.player_one_id == session[:current_user]['id'] %>
-    <a href="/rooms/start/<%= @room.id %>">Start Game</a>
+    <form action="/rooms/start/<%= @room.id %>" method="GET">
+        <input id="start_game" type="submit" value="Start Game">
+    </form>
 <% end %>
+
+<script>
+    $(document).ready(function(){
+        var update = function(){
+            $.ajax({
+                method: 'GET',
+                url: '/rooms/get_update/<%= @room.id %>',
+                success: function(data){
+                    $('#player1').html(data.playerOne);
+                    $('#player2').html(data.playerTwo);
+                    
+                    if(data.playerOne == null || data.playerTwo == null){
+                        $('#start_game').prop('disabled', true);
+                    } else {
+                        $('#start_game').prop('disabled', false);
+                    }
+                },
+                error: function(){
+                    window.location.replace("<%= user_path(session[:current_user]['id']) %>");
+                }
+            });
+            setTimeout(update, 2500);
+        }
+        update();
+    });
+</script>

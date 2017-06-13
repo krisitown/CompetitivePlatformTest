@@ -1,4 +1,9 @@
 <h2><%= room.name %></h2>
 <h4>Players inside: <%= room.player_count %>/2 </h4>
 <h4>Stake: <%= room.coins_per_player %></h4>
-<a href="/rooms/join/<%= room.id %>">Join</a>
+<% if room.player_one_id == session[:current_user]['id'] || room.player_two_id == session[:current_user] %>
+    <h4>You are already in this room!</h4>
+    <a href="/rooms/<%= room.id %>">Enter</a>
+<% else %>
+    <a href="/rooms/join/<%= room.id %>">Join</a>
+<% end %>

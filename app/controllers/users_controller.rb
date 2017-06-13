@@ -21,6 +21,14 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end
     
+    def add_coins
+        coins = params[:coins].to_i
+        user = User.find(session[:current_user]['id'])
+        user.coins += coins
+        user.save
+        redirect_to '/'
+    end
+    
     private
         def user_params
             params.require(:user).permit(:username, :password, :password_confimarion)

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :users
   resources :rooms
 
+  post 'add_coins' => 'users#add_coins'
+
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
   get 'rooms/join/:id' => 'rooms#join'
   get 'rooms/leave/:id' => 'rooms#leave'
   get 'rooms/start/:id' => 'rooms#start'
+  get 'rooms/get_update/:id' => 'rooms#update_room'
   # Example resource route with options:
   #   resources :products do
   #     member do
