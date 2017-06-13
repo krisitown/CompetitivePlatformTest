@@ -1,3 +1,5 @@
+<div class="room_show">
+
 <h2><%= @room.name %></h2>
 
 <h3>Players:</h3>
@@ -6,8 +8,7 @@
     <li id="player2"><% if @room.player_two_id != nil %> <%= User.find(@room.player_two_id).username %> <% end %></li>
 </ul>
 
-<div id="winner"></div>
-
+<div class="buttons">
 <a class="btn btn-danger" href="/rooms/leave/<%= @room.id %>">Leave</a>
 
 <% if @room.player_one_id == session[:current_user]['id'] %>
@@ -15,6 +16,8 @@
         <input class="btn btn-primary" id="start_game" type="submit" value="Start Game">
     </form>
 <% end %>
+</div>
+</div>
 
 <script>
     $(document).ready(function(){
