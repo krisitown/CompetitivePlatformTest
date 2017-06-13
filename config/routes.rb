@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'rooms/leave/:id' => 'rooms#leave'
   get 'rooms/start/:id' => 'rooms#start'
   get 'rooms/get_update/:id' => 'rooms#update_room'
+  
   # Example resource route with options:
   #   resources :products do
   #     member do

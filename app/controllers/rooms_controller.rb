@@ -7,17 +7,23 @@ class RoomsController < ApplicationController
         @room = Room.create(room_params)
         @room.player_one_id = session[:current_user]['id']
         @room.player_count = 1
-        if @room.save
-            flash[:success] = "You have successfully created a room!"
-            redirect_to room_path(@room)
+        if @room.coins_per_player > User.find(session[:current_user]['id']).coins
+            flash[:danger] = "You don't have enough coins!"
+            @room.destroy
+            redirect_to '/rooms/new'
         else
-            flash[:danger] = "An error occured, please try again!"
-            render 'new'
+            if @room.save
+                flash[:success] = "You have successfully created a room!"
+                redirect_to room_path(@room)
+            else
+                flash[:danger] = "An error occured, please try again!"
+                render 'new'
+            end
         end
     end
     
     def index
-        @rooms = Room.all
+        @rooms = Room.all.paginate(:page => params[:page], :per_page => 5)
     end
     
     def show
@@ -72,6 +78,7 @@ class RoomsController < ApplicationController
                 redirect_to '/'
             end
         end
+    end    
         
         def leave
             user = session[:current_user]
@@ -98,7 +105,7 @@ class RoomsController < ApplicationController
                 redirect_to '/'
             end
         end
-    end
+   
     
     def update_room
         user = session[:current_user]

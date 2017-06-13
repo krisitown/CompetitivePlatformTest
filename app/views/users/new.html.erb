@@ -1,4 +1,4 @@
-<h2>Register:</h2>
+<h3>Register:</h3>
 
 <%= form_for @user do |f| %>
 
@@ -15,15 +15,21 @@
             </div>
         </div>
     <% end %>
-
-    <%= f.label :username %></br>
-    <%= f.text_field :username %></br>
     
-    <%= f.label :password %></br>
-    <%= f.password_field :password %></br>
+    <div class="form-group">
+        <%= f.label :username %></br>
+        <%= f.text_field :username %></br>
+    </div>
     
-    <%= f.label :password_confirmation %></br>
-    <%= f.password_field :password_confirmation %></br>
+    <div class="form-group">
+        <%= f.label :password %></br>
+        <%= f.password_field :password %></br>
+    </div>
     
-    <%= f.submit 'Register' %>
+    <div class="form-group">
+        <%= f.label :password_confirmation %></br>
+        <%= f.password_field :password_confirmation %></br>
+    </div>
+    
+    <%= f.submit 'Register', class: 'btn btn-default' %>
 <% end %>

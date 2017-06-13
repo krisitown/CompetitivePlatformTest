@@ -1,0 +1,49 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+nav {
+    background-color: royalblue;
+    
+    a {
+        color: white;
+        font-size: 22px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 7px;
+        padding-top: 7px;
+    }
+    
+    a:hover {
+        color: lightblue;
+        text-decoration: none;
+    }
+}
+
+#create_room_btn {
+    margin: 20px 15px 20px 15px;
+    font-size: 22px;
+    float: right;
+}
+
+.profile_pic {
+    padding: 15px;
+    display: inline-block;
+    float: left;
+    img {
+        padding: 4px;
+        border: 2px solid black;
+    }
+}
+
+.profile_info {
+    display: inline-block;
+    h2{
+        font-size: 52px;
+        margin-bottom: 26px;
+    }
+}
+
+.room {
+    margin: 8px;
+    padding: 7px;
+}
