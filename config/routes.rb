@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   post 'matchmaking/join' => 'matchmaking#join'
   post 'matchmaking/leave' => 'matchmaking#leave'
   
-  get 'rooms/user_inside' => 'matchmaking#user_in_room'
+  get '/user_in_room' => 'matchmaking#user_in_room'
   
   # Example resource route with options:
   #   resources :products do

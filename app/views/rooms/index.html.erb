@@ -15,6 +15,18 @@
 
 <script>
     $(document).ready(function() {
+        var redirectToRoom = function(){
+            $.ajax({
+                method: 'GET',
+                url: '/user_in_room',
+                success: function(data){
+                    window.location.replace('/rooms/' + data.room.id);
+                }
+            });
+            setTimeout(redirectToRoom, 2500);
+        }
+        redirectToRoom();
+        
         $('#seeking_match').hide();
         $('#automatch').click(function(){
             $.ajax({

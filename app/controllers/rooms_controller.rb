@@ -23,7 +23,7 @@ class RoomsController < ApplicationController
     end
     
     def index
-        @rooms = Room.all.paginate(:page => params[:page], :per_page => 5)
+        @rooms = Room.where('player_count != 0').paginate(:page => params[:page], :per_page => 5)
     end
     
     def show
@@ -93,17 +93,20 @@ class RoomsController < ApplicationController
                 room.player_one_id = nil
                 room.save
                 flash[:success] = "You have successfully left the room!"
-                redirect_to '/'
             elsif room.player_two_id == user['id']
                 room.player_count -= 1
                 room.player_two_id = nil
                 room.save
                 flash[:success] = "You have successfully left the room!"
-                redirect_to '/'
             else
                 flash[:danger] = "You are not in the room"
-                redirect_to '/'
             end
+            
+            if room.player_one_id == nil && room.player_two_id == nil
+                room.destroy
+            end
+            
+            redirect_to '/'
         end
    
     
