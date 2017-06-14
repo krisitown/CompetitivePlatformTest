@@ -31,6 +31,11 @@ Rails.application.routes.draw do
   get 'rooms/start/:id' => 'rooms#start'
   get 'rooms/get_update/:id' => 'rooms#update_room'
   
+  post 'matchmaking/join' => 'matchmaking#join'
+  post 'matchmaking/leave' => 'matchmaking#leave'
+  
+  get 'rooms/user_inside' => 'matchmaking#user_in_room'
+  
   # Example resource route with options:
   #   resources :products do
   #     member do

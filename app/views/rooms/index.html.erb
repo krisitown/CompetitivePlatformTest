@@ -1,7 +1,43 @@
 <a id="create_room_btn" class="btn btn-primary" href="/rooms/new">Create Room</a>
 
+<div id="matchmaking">
+    <button class="btn btn-primary" id="automatch">Automatch</button>
+    <div id="seeking_match">Please wait while, we find a match for you!
+        <button class="btn btn-danger" id='leave_automatch'>Leave Automatch</button>
+    </div>
+</div>
+
 <h2>Rooms</h2>
 <% @rooms.each do |room| %>
     <%= render room %>
 <% end %>
 <%= will_paginate(@rooms) %>
+
+<script>
+    $(document).ready(function() {
+        $('#seeking_match').hide();
+        $('#automatch').click(function(){
+            $.ajax({
+                method: 'POST',
+                url: '/matchmaking/join',
+                data: { stake: 25 },
+                success: function(){
+                    $('#automatch').hide();
+                    $('#seeking_match').show();
+                }
+            });
+        });
+        
+        $('#leave_automatch').click(function(){
+            $.ajax({
+                method: 'POST',
+                url: '/matchmaking/leave',
+                success: function(){
+                    $('#automatch').show();
+                    $('#seeking_match').hide();
+                }
+            });
+        });
+        
+    })
+</script>

@@ -188,6 +188,8 @@ class RoomsController < ApplicationController
         room.destroy
         redirect_to user_path(session[:current_user]['id'])
     end
+    
+    
      
     private
         def room_params

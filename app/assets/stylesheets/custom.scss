@@ -60,3 +60,16 @@ nav {
         display: inline;
     }
 }
+
+#seeking_match {
+    font-size: 22px;
+    padding: 16px;
+    button {
+        margin: 16px;
+    }
+}
+
+#matchmaking > button {
+    margin: 20px 15px 20px 15px;
+    font-size: 22px;
+}

@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612172215) do
+ActiveRecord::Schema.define(version: 20170614170533) do
+
+  create_table "matchmaking_pools", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.integer  "player_one_id"
@@ -29,8 +34,9 @@ ActiveRecord::Schema.define(version: 20170612172215) do
     t.string   "password_digest"
     t.integer  "rating"
     t.integer  "coins"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "matchmaking_pool_id"
   end
 
 end
